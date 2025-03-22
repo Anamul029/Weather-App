@@ -1,9 +1,10 @@
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const WeatherCard = ({ city, removeCity }) => {
   const [weather, setWeather] = useState(null);
-  const [unit, setUnit] = useState("C"); // Default: Celsius
+  const [unit, setUnit] = useState("C"); // 🌡️ Default: Celsius
   const API_KEY = import.meta.env.VITE_APP_WEATHER_API_KEY;
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const WeatherCard = ({ city, removeCity }) => {
   const convertTemp = (temp) => (unit === "C" ? temp : (temp * 9) / 5 + 32);
 
   return (
-    <div className="border p-4 rounded-lg shadow-lg text-center">
+    <div className="border p-4 rounded-lg shadow-lg text-center bg-gray-100">
       {weather ? (
         <>
           <h2 className="text-xl font-bold">{weather.name}</h2>
@@ -25,7 +26,7 @@ const WeatherCard = ({ city, removeCity }) => {
           <p>Humidity: {weather.main.humidity}%</p>
           <p>Wind Speed: {weather.wind.speed} m/s</p>
 
-          {/* Toggle Button */}
+          {/*  Toggle Button */}
           <button
             onClick={() => setUnit(unit === "C" ? "F" : "C")}
             className="bg-blue-500 text-white px-3 py-1 rounded-md mx-2 mt-2"
@@ -33,7 +34,7 @@ const WeatherCard = ({ city, removeCity }) => {
             Switch to {unit === "C" ? "Fahrenheit" : "Celsius"}
           </button>
 
-          {/* Remove City Button */}
+          {/*  Remove City Button */}
           <button
             onClick={() => removeCity(city)}
             className="bg-red-500 text-white px-3 py-1 rounded-md mt-2"
