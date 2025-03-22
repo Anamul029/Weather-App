@@ -3,10 +3,9 @@ import axios from "axios";
 
 const WeatherCard = ({ city, removeCity }) => {
   const [weather, setWeather] = useState(null);
+  const [unit, setUnit] = useState("C"); // Default: Celsius
   const API_KEY = import.meta.env.VITE_APP_WEATHER_API_KEY;
-  // const API_KEY ="fa5e2cbbbc163d0df96966bbc0b2e3fa"
-  console.log('Api key=',API_KEY);
-  
+
   useEffect(() => {
     axios
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
@@ -14,15 +13,31 @@ const WeatherCard = ({ city, removeCity }) => {
       .catch((error) => console.error("Error fetching data:", error));
   }, [city, API_KEY]);
 
+  // Temperature Conversion Function
+  const convertTemp = (temp) => (unit === "C" ? temp : (temp * 9) / 5 + 32);
+
   return (
-    <div className="border p-4 rounded-lg shadow-lg">
+    <div className="border p-4 rounded-lg shadow-lg text-center">
       {weather ? (
         <>
           <h2 className="text-xl font-bold">{weather.name}</h2>
-          <p>Temperature: {weather.main.temp}°C</p>
+          <p>Temperature: <span className="font-semibold">{convertTemp(weather.main.temp).toFixed(1)}°{unit}</span></p>
           <p>Humidity: {weather.main.humidity}%</p>
           <p>Wind Speed: {weather.wind.speed} m/s</p>
-          <button onClick={() => removeCity(city)} className="bg-red-500 text-white p-1 rounded">
+
+          {/* Toggle Button */}
+          <button
+            onClick={() => setUnit(unit === "C" ? "F" : "C")}
+            className="bg-blue-500 text-white px-3 py-1 rounded-md mx-2 mt-2"
+          >
+            Switch to {unit === "C" ? "Fahrenheit" : "Celsius"}
+          </button>
+
+          {/* Remove City Button */}
+          <button
+            onClick={() => removeCity(city)}
+            className="bg-red-500 text-white px-3 py-1 rounded-md mt-2"
+          >
             Remove
           </button>
         </>
