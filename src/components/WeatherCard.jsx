@@ -4,8 +4,8 @@ import axios from "axios";
 
 const WeatherCard = ({ city, removeCity }) => {
   const [weather, setWeather] = useState(null);
-  const [unit, setUnit] = useState("C"); // 🌡️ Default: Celsius
-  const API_KEY = import.meta.env.VITE_APP_WEATHER_API_KEY;
+  const [unit, setUnit] = useState("C"); //  Default: Celsius
+  const API_KEY = "fa5e2cbbbc163d0df96966bbc0b2e3fa"
 
   useEffect(() => {
     axios
