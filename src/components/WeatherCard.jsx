@@ -18,7 +18,7 @@ const WeatherCard = ({ city, removeCity }) => {
   const convertTemp = (temp) => (unit === "C" ? temp : (temp * 9) / 5 + 32);
 
   return (
-    <div className="border p-4 rounded-lg shadow-lg text-center bg-gray-100">
+    <div className="border p-4 rounded-lg shadow-lg text-center bg-blue-50">
       {weather ? (
         <>
           <h2 className="text-xl font-bold">{weather.name}</h2>
@@ -29,7 +29,7 @@ const WeatherCard = ({ city, removeCity }) => {
           {/*  Toggle Button */}
           <button
             onClick={() => setUnit(unit === "C" ? "F" : "C")}
-            className="bg-blue-500 text-white px-3 py-1 rounded-md mx-2 mt-2"
+            className="bg-green-600 text-white px-3 py-1 rounded-md mx-2 mt-2"
           >
             Switch to {unit === "C" ? "Fahrenheit" : "Celsius"}
           </button>
@@ -39,7 +39,7 @@ const WeatherCard = ({ city, removeCity }) => {
             onClick={() => removeCity(city)}
             className="bg-red-500 text-white px-3 py-1 rounded-md mt-2"
           >
-            Remove
+            Remove city
           </button>
         </>
       ) : (

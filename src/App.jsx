@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <div className="p-5 text-center">
-      <h1 className="text-2xl font-bold mb-4">Weather Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Weather Information Dashborad</h1>
 
       {/* Search Input */}
       <input
